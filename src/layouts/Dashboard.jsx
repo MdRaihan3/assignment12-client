@@ -6,8 +6,8 @@ const Dashboard = () => {
         <div>
            <DashboardNavbar></DashboardNavbar>
            <div className=" flex">
-            <div className=" p-4">navigation</div>
-            <div className=""><Outlet></Outlet>Outlet</div>
+            <div className=" w-64 min-h-screen p-4">navigation</div>
+            <div className=" flex-1 p-9"><Outlet></Outlet>Outlet</div>
            </div>
             
         </div>

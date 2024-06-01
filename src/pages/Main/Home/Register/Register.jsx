@@ -22,7 +22,11 @@ const Register = () => {
                 updateUserProfile(data?.name, res.data.data.display_url)
                     .then(() => {
                         Swal.fire('Successfully Registered')
-                    }).catch((err) => console.log(err))
+                    }).catch((err) =>{  
+                        Swal.fire({
+                        icon: 'error',
+                        text: 'Check your email and password again'})
+                        console.log(err)})
             })
             .catch(err => {
                 console.log(err.Error);
@@ -49,7 +53,7 @@ const Register = () => {
                                 <input type="text" placeholder="Name"
                                     {...register("name", { required: true })}
                                     className="input input-bordered" />
-                                {errors.password?.type === 'required' && <p className=' text-red-600'>Name is required </p>}
+                                {errors.password === 'required' && <p className=' text-red-600'>Name is required </p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">

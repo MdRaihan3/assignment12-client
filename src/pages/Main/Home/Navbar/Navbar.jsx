@@ -8,6 +8,8 @@ const Navbar = () => {
             {
                 user ?
                     <>
+                        <li><Link to={'/availableCoin'}>Available Coin</Link></li>
+                        <li><Link to={'/user-profile'}>User Profile</Link></li>
                         <li><Link to={'/dashboard'}>Dashboard</Link></li>
                         <button onClick={() => logOut()}
                             className="btn btn-outline btn-primary">Logout</button>
@@ -31,7 +33,8 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <Link to={'/'} className="btn btn-ghost text-xl">RWorkers</Link>
+                    <Link to={'/'} className="btn btn-ghost text-xl">
+                       <img className=" h-12 w-12" src="logo.png" alt="" /> RWorkers</Link>
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
