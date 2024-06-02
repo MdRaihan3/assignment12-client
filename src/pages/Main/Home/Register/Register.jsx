@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../../useHooks/useAuth';
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa';
 
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_API_KEY}`
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile } = useAuth()
+    const { createUser, updateUserProfile, googleSignIn } = useAuth()
 
     const handleRegister = async (data) => {
         console.log(data);
@@ -22,11 +23,13 @@ const Register = () => {
                 updateUserProfile(data?.name, res.data.data.display_url)
                     .then(() => {
                         Swal.fire('Successfully Registered')
-                    }).catch((err) =>{  
+                    }).catch((err) => {
                         Swal.fire({
-                        icon: 'error',
-                        text: 'Check your email and password again'})
-                        console.log(err)})
+                            icon: 'error',
+                            text: 'Check your email and password again'
+                        })
+                        console.log(err)
+                    })
             })
             .catch(err => {
                 console.log(err.Error);
@@ -34,6 +37,20 @@ const Register = () => {
                     icon: 'error',
                     text: 'Check your email and password again'
                 })
+            }
+        )
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result);
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Successfully Logged in'
+                })
+            }).catch(error => {
+                console.log(error);
             })
     }
 
@@ -105,6 +122,10 @@ const Register = () => {
                                 <span className='text-blue-500'> Login</span>
                             </Link>
                         </p>
+                        <div className="divider">Also log in with</div>
+                        <button onClick={handleGoogleSignIn} className=" btn btn-primary btn-sm btn-outline text-center mb-3">
+                            <FaGoogle></FaGoogle> Google
+                        </button>
                     </div>
                 </div>
             </div>
