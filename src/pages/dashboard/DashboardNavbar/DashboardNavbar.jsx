@@ -1,13 +1,29 @@
 import { Link } from 'react-router-dom';
 import { IoIosNotifications } from "react-icons/io";
+import useAuth from '../../../useHooks/useAuth';
+import useRole from '../../../useHooks/useRole';
 const DashboardNavbar = () => {
+    const { user } = useAuth();
+    const [role, , userD] = useRole()
+    console.log(role)
+    console.log(userD);
+
     const navLinks = <>
-     <li><Link to={'/dashboard'}> <IoIosNotifications className=' text-2xl'></IoIosNotifications></Link></li>
- 
+        <li className='  text-center text-lg'>
+            <p>Available Coin {userD.coin}</p>
+            <p>{role}</p>
+        </li>
+        <li className=' flex flex-col items-center'>
+            <img className='h-10 w-10 rounded-full p-0 m-0' src={user?.photoURL} alt="" />
+            <p className=' text-lg'>{user?.displayName}</p>
+        </li>
+        <li>
+            <Link to={'/dashboard'}> <IoIosNotifications className=' text-2xl'></IoIosNotifications></Link>
+        </li>
     </>
     return (
         <div>
-               <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,7 +40,7 @@ const DashboardNavbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-            </div> 
+            </div>
         </div>
     );
 };

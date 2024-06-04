@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form"
 import useAuth from "../../../useHooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
-    const { signIn, googleSignIn } = useAuth()
+    const { signIn} = useAuth()
     const { register, handleSubmit } = useForm()
 
     const handleLogin = async (data) => {
@@ -17,19 +17,6 @@ const Login = () => {
                     text: 'Successfully Logged in'
                 })
             })
-    }
-
-    const handleGoogleSignIn = () =>{
-        googleSignIn()
-        .then(result =>{
-            console.log(result);
-            Swal.fire({
-                icon: 'success',
-                text: 'Successfully Logged in'
-            })
-        }).catch(error => {
-            console.log(error);
-        })
     }
 
     return (
@@ -66,10 +53,7 @@ const Login = () => {
                                 <span to='/register' className=' text-blue-500'> Register</span>
                             </Link>
                         </p>
-                        <div className="divider">Also log in with</div>
-                        <button onClick={handleGoogleSignIn} className=" btn btn-primary btn-sm btn-outline text-center mb-3">
-                        <FaGoogle></FaGoogle> Google 
-                        </button>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

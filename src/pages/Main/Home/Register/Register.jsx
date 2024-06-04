@@ -3,15 +3,18 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../../useHooks/useAuth';
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom';
-import { FaGoogle } from 'react-icons/fa';
+import useAxiosPublic from '../../../../useHooks/useAxiosPublic';
+import SocialLogin from '../../SocialLogin/SocialLogin';
 
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_API_KEY}`
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile, googleSignIn } = useAuth()
+    const { createUser, updateUserProfile} = useAuth();
+    const axiosPublic = useAxiosPublic()
 
     const handleRegister = async (data) => {
         console.log(data);
+        const coin = data?.selectRole === 'worker' ? 20 : 50
         const imageFile = { image: data.image[0] }
         const res = await axios.post(imageHostingApi, imageFile, {
             headers: { "content-type": 'multipart/form-data' }
@@ -20,9 +23,22 @@ const Register = () => {
         createUser(data?.email, data?.password)
             .then(result => {
                 console.log(result);
-                updateUserProfile(data?.name, res.data.data.display_url)
+                updateUserProfile(data?.name, res?.data?.data?.display_url)
                     .then(() => {
-                        Swal.fire('Successfully Registered')
+                        const userInfo = {
+                            name: data?.name,
+                            email: data?.email,
+                            image: res?.data?.data?.display_url,
+                            role: data?.selectRole,
+                            coin 
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res?.data);
+                                if (res.data?.insertedId) {
+                                    Swal.fire('Successfully Registered')
+                                }
+                            })
                     }).catch((err) => {
                         Swal.fire({
                             icon: 'error',
@@ -38,20 +54,7 @@ const Register = () => {
                     text: 'Check your email and password again'
                 })
             }
-        )
-    }
-
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                console.log(result);
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Successfully Logged in'
-                })
-            }).catch(error => {
-                console.log(error);
-            })
+            )
     }
 
     return (
@@ -122,10 +125,7 @@ const Register = () => {
                                 <span className='text-blue-500'> Login</span>
                             </Link>
                         </p>
-                        <div className="divider">Also log in with</div>
-                        <button onClick={handleGoogleSignIn} className=" btn btn-primary btn-sm btn-outline text-center mb-3">
-                            <FaGoogle></FaGoogle> Google
-                        </button>
+                       <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
