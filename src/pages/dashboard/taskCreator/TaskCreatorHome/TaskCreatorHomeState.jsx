@@ -13,12 +13,12 @@ const TaskCreatorHomeState = () => {
                 </div>                
                 <div className=" border rounded-lg p-4 flex flex-col justify-center items-center text-xl">
                     <FaCoins className=" text-3xl text-red-300 mb-5"></FaCoins>
-                    <p>abadaba</p>
+                    <p>abadabaa</p>
                     <p>Pending Task</p>
                 </div>                
                 <div className=" border rounded-lg p-4 flex flex-col justify-center items-center text-xl">
                     <FaCoins className=" text-3xl text-red-300 mb-5"></FaCoins>
-                    <p>gabadaba</p>
+                    <p>gabadabaa</p>
                     <p>Total Paid</p>
                 </div>                
             </div>
