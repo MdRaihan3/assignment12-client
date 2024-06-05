@@ -1,4 +1,4 @@
-import { FaCoins, FaDollarSign, FaTasks } from "react-icons/fa";
+import { FaCoins } from "react-icons/fa";
 import useRole from "../../../../useHooks/useRole";
 
 const TaskCreatorHomeState = () => {
@@ -13,12 +13,12 @@ const TaskCreatorHomeState = () => {
                 </div>                
                 <div className=" border rounded-lg p-4 flex flex-col justify-center items-center text-xl">
                     <FaCoins className=" text-3xl text-red-300 mb-5"></FaCoins>
-                    <p>abadabaa</p>
+                    <p>abadaba</p>
                     <p>Pending Task</p>
                 </div>                
                 <div className=" border rounded-lg p-4 flex flex-col justify-center items-center text-xl">
                     <FaCoins className=" text-3xl text-red-300 mb-5"></FaCoins>
-                    <p>gabadabaa</p>
+                    <p>gabadaba</p>
                     <p>Total Paid</p>
                 </div>                
             </div>

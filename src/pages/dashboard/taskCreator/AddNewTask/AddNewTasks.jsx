@@ -3,33 +3,27 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../useHooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../useHooks/useAxiosPublic";
 import Swal from 'sweetalert2'
+import useRole from "../../../../useHooks/useRole";
 
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_API_KEY}`
 
 const AddNewTasks = () => {
     const { user } = useAuth();
-    const axiosPublic = useAxiosPublic()
-
-    const { data: storedUser = {} } = useQuery({
-        queryKey: ['storedUser'],
-        queryFn: async () => {
-            const { data } = await axiosPublic.get(`/user/${user?.email}`)
-            return data
-        }
-    })
+    const axiosPublic = useAxiosPublic();
+    const [ , , userDB] = useRole()
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [startDate, setStartDate] = useState(new Date())
 
     const handleAddNewTask = async (data) => {
-        if (data?.payableAmount > storedUser?.coin) {
+        if ((data?.payableAmount*data?.taskQuantity) > userDB?.coin) {
             Swal.fire({
                 icon: 'error',
                 text: 'Not enough coin!!'
             })
+            return 
         }
 
         const imageFile = { image: data.image[0] }
@@ -41,10 +35,12 @@ const AddNewTasks = () => {
             creatorEmail: user?.email,
             creatorName: user?.displayName,
             taskTitle: data?.taskTitle, taskDetail: data?.taskDetail,
-            taskQuantity: data?.taskQuantity, payableAmount: data?.payableAmount,
+            taskQuantity: parseInt(data?.taskQuantity),
+            payableAmount: parseInt(data?.payableAmount),
             submissionInfo: data?.submissionInfo,
             taskImage: res?.data?.data?.display_url,
-            completionDate: startDate
+            completionDate: startDate,
+            currentTime: new Date()
         }
         console.log(taskInfo);
         axiosPublic.post('/tasks', taskInfo)
@@ -94,7 +90,7 @@ const AddNewTasks = () => {
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Payable Amount(us dollar)</span>
+                                        <span className="label-text">Payable Amount(coin)</span>
                                     </label>
                                     <input type="text" placeholder="Payable Amount"
                                         {...register("payableAmount", { required: true })}

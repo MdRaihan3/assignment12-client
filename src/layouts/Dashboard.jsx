@@ -40,8 +40,8 @@ const Dashboard = () => {
                                 <FaHome></FaHome>Add New Task</NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/myTask'>
-                                <FaHome></FaHome>My Task</NavLink>
+                            <NavLink to='/dashboard/myTasks'>
+                                <FaHome></FaHome>My Tasks</NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashboard/purchaseCoin'>

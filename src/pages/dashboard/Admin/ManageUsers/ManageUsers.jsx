@@ -101,18 +101,6 @@ const ManageUsers = () => {
                                         <option value={"worker"}>Worker</option>
                                     </select>
                                     }
-                                    {/* <select value={selected} onChange={(e) => handleUpdateUserRole(e, user)}>
-                                        <option value={''} disabled>Update Role</option>
-                                        <option value={"admin"}>Admin</option>
-                                        <option value={"taskCreator"}>Task Creator</option>
-                                        <option value={"worker"}>Worker</option>
-                                    </select> */}
-                                    {/* {
-                                        user?.role === "admin" ? 'Admin' :
-                                            <button onClick={() => handleUpdateUserRole(user)} className="btn btn-ghost btn-lg bg-red-400">
-                                                <FaUsers className=" text-white text-xl p-0"></FaUsers>
-                                            </button>
-                                    } */}
                                 </td>
                                 <td>
                                     <button onClick={() => handleDeleteUser(user)} className="btn btn-ghost btn-lg">

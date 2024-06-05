@@ -36,28 +36,32 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    useEffect(()=>{
-        const unSubscribe = onAuthStateChanged(auth, currentUser =>{
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            setLoading(false)
-            if(currentUser){
+            if (currentUser) {
                 // get token and store in localStorage
-                const userInfo = {email: currentUser?.email}
+                const userInfo = { email: currentUser?.email }
+                console.log('loading in currentUser',loading);
+
                 axiosPublic.post('/jwt', userInfo)
-                .then(res => {
-                    if(res.data?.token){
-                        localStorage.setItem('access-token', res.data?.token)
-                    }
-                })
-            }else{
+                    .then(res => {
+                        if (res.data?.token) {
+                            localStorage.setItem('access-token', res.data?.token)
+                            setLoading(false)
+                            console.log('loading in jwt',loading);
+                        }
+                    }).catch(err => console.log('error in jwt', err))
+            } else {
                 // todo: remove cached token form localStorage
                 localStorage.removeItem('access-token')
+                setLoading(false)
             }
         })
-        return ()=>{
+        return () => {
             return unSubscribe()
         }
-    },[])
+    }, [])
     console.log(user);
 
     const authInfo = { user, loading, createUser, signIn, googleSignIn, updateUserProfile, logOut }
