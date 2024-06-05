@@ -70,8 +70,8 @@ const ManageUsers = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Image</th>
-                            <th>Name</th>
+                            <th>Image asfasd</th>
+                            <th>Name asdfasd</th>
                             <th>Email</th>
                             <th>Coin</th>
                             <th>User Role</th>
