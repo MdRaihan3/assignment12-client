@@ -10,7 +10,7 @@ const DashboardNavbar = () => {
 
     const navLinks = <>
         <li className='  text-center text-lg'>
-            <p>Available Coin sdfsad{userD.coin}</p>
+            <p>Available Coin {userD.coin}</p>
             <p>{role}</p>
         </li>
         <li className=' flex flex-col items-center'>
