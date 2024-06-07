@@ -15,7 +15,7 @@ const AdminHomeState = () => {
     return (
         <div className=" my-8">
             <h1 className=" text-2xl my-3 text-center">States</h1>
-            <div className=" grid grid-cols-3 gap-6">
+            <div className=" md:grid grid-cols-3 gap-6">
                 <div className=" border rounded-lg p-5 flex flex-col justify-center items-center">
                     <p className=" text-xl mb-3">Total User</p>
                     <div className=" flex justify-center items-center text-lg">

@@ -5,7 +5,7 @@ const HowItWorkSection = () => {
         <div>
             <div className=" my-8">
                 <h1 className=" text-center text-2xl my-3">How It Work</h1>
-                <div className=" grid grid-cols-3 gap-6">
+                <div className=" md:grid grid-cols-3 gap-6">
                     <div className=" border rounded-lg p-4">
                         <div className="flex gap-3 text-lg mb-1">
                             <FaRegistered></FaRegistered>

@@ -22,7 +22,7 @@ const TaskCreatorHomeState = () => {
     return (
         <div className=" my-8">
             <h1 className=" text-center text-xl mb-3">States</h1>
-            <div className=" grid grid-cols-3 gap-6">
+            <div className=" md:grid grid-cols-3 gap-6">
                 <div className=" border rounded-lg p-4 flex flex-col justify-center items-center text-xl">
                     <FaCoins className=" text-3xl text-red-300 mb-5"></FaCoins>
                     <p>{userDB.coin}</p>

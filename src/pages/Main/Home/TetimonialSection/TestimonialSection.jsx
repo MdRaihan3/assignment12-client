@@ -3,7 +3,7 @@ const TestimonialSection = () => {
     return (
         <div className=" my-10">
             <h1 className=" text-center text-2xl my-3">Testimonial</h1>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="md:grid grid-cols-3 gap-6">
                 <div className=" border rounded-lg p-4 flex flex-col">
                     <p className=" flex-grow mb-3">Really good. Pretty much everything is setup nicely. Support team is very responsive to problems.</p>
                     <div className="flex">
