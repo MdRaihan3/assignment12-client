@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                 </nav>
             </footer>
-            <p className=" text-center pt-4">Copyright © 2024 sdfs- All right reserved by RWorker</p>
+            <p className=" text-center pt-4">Copyright © 2024 - All right reserved by RWorker</p>
         </div>
     );
 };
