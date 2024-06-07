@@ -31,7 +31,7 @@ const ManageUsers = () => {
                 })
         } catch (err) {
             Swal.fire({ icon: 'error' })
-            console.log('errorrrrr', err);
+            console.log('errorr', err);
         }
 
     }
