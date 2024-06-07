@@ -19,10 +19,10 @@ const WithDrawalForm = () => {
         const coinInForm = parseInt(data?.coinToWithdraw)
         console.log(typeof coinInForm, coinInForm,   typeof userDB?.coin, userDB?.coin)
         if(userDB?.coin < 1){
-            Swal.fire({text:'Not enough coinsdfasd', icon: 'error'})
+            Swal.fire({text:'Not enough coin', icon: 'error'})
             return ;}
         if(coinInForm > userDB?.coin){
-            Swal.fire({text:'Not enough coinsadfas', icon: 'error'})
+            Swal.fire({text:'Not enough coin', icon: 'error'})
             return ;}
         const coin = data?.selectRole
         console.log(data, coin);

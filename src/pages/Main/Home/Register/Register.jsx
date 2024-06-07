@@ -36,13 +36,13 @@ const Register = () => {
                             .then(res => {
                                 console.log(res?.data);
                                 if (res.data?.insertedId) {
-                                    Swal.fire({text:'Successfully Registered', icon: 'success'})
+                                    Swal.fire({text:'Successfully Registeredsaf', icon: 'success'})
                                 }
                             })
                     }).catch((err) => {
                         Swal.fire({
                             icon: 'error',
-                            text: 'Check your email and password again'
+                            text: 'Check your email and password againfasf'
                         })
                         console.log(err)
                     })
