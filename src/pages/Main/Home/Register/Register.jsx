@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../../useHooks/useAuth';
 import Swal from 'sweetalert2'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../../../useHooks/useAxiosPublic';
 import SocialLogin from '../../SocialLogin/SocialLogin';
 
@@ -11,10 +11,12 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile} = useAuth();
     const axiosPublic = useAxiosPublic()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const handleRegister = async (data) => {
         console.log(data);
-        const coin = data?.selectRole === 'worker' ? 20 : 50
+        const coin = data?.selectRole === 'worker' ? 10 : 50
         const imageFile = { image: data.image[0] }
         const res = await axios.post(imageHostingApi, imageFile, {
             headers: { "content-type": 'multipart/form-data' }
@@ -34,6 +36,7 @@ const Register = () => {
                         }
                         axiosPublic.post('/users', userInfo)
                             .then(res => {
+                                navigate(location.state?.from?.pathname || '/')
                                 console.log(res?.data);
                                 if (res.data?.insertedId) {
                                     Swal.fire({text:'Successfully Registered', icon: 'success'})

@@ -4,13 +4,13 @@ import useAuth from '../../../useHooks/useAuth';
 import useRole from '../../../useHooks/useRole';
 const DashboardNavbar = () => {
     const { user } = useAuth();
-    const [role, , userD] = useRole()
+    const [role, , userDB] = useRole()
     console.log(role)
-    console.log(userD);
+    console.log(userDB);
 
     const navLinks = <>
         <li className='  text-center text-lg'>
-            <p>Available Coin {userD.coin}</p>
+            <p>Available Coin {userDB?.coin}</p>
             <p>{role}</p>
         </li>
         <li className=' flex flex-col items-center'>

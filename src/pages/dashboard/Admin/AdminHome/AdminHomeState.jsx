@@ -5,7 +5,7 @@ import useAxiosSecure from "../../../../useHooks/useAxiosSecure";
 const AdminHomeState = () => {
     const axiosSecure = useAxiosSecure()
 
-    const { data: states = {} } = useQuery({
+    const { data: states = [] } = useQuery({
         queryKey: ['admin-stats'],
         queryFn: async () => {
             const res = await axiosSecure.get('/admin-state')

@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import useAuth from "../../../../useHooks/useAuth";
 import useAxiosPublic from "../../../../useHooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import Countdown from 'react-countdown';
 
 const TaskDetail = () => {
     const task = useLoaderData()
@@ -33,31 +34,16 @@ const TaskDetail = () => {
         })
     }
 
-    // task_detail
-    // task_img_url
-    // payable_amount
-    // worker_email
-    // submission_details
-    // worker_name 
-    // creator_name
-    // creator_email
-    // current_date
-    // status
-    // Pending/ approved / rejected 
+    const renderer = ({days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+          // Render a completed state
+          return <p>Time is up</p>;
+        } else {
+          // Render a countdown
+          return <span>{days} days {hours} hours {minutes} minutes {seconds} seconds</span>;
 
-
-    {/* task_id
-            ● task_title
-            ● task_detail
-            ● task_img_url
-            ● payable_amount
-            ● worker_email
-            ● submission_details
-            ● worker_name
-            ● creator_name
-            ● creator_email
-            ● current_date
-            ● status ( pending ) */}
+        }
+      };
 
     return (
         <div>
@@ -76,6 +62,7 @@ const TaskDetail = () => {
                     <p>Payable Amount(coin): {task?.payableAmount}</p>
                     <p>Task Quantity: {task?.taskQuantity}</p>
                     <p>Completion Date: {new Date(task?.completionDate).toLocaleDateString()}</p>
+                    <p>Remaining Time: <Countdown date={Date.parse(task.completionDate)} renderer={renderer}></Countdown></p>
                 </div>
                 <div>
                     <form onSubmit={handleSubmit}>

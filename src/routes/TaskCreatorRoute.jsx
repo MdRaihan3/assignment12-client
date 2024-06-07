@@ -5,7 +5,7 @@ const TaskCreatorRoute = ({children}) => {
     const [role, isLoading] = useRole()
     if (isLoading){ return <span className="loading loading-infinity loading-lg"></span>}
     if (role === 'taskCreator'){ return children}
-    return <Navigate to={'/dashboard'}></Navigate>
+    return <Navigate state={{from: location}} replace to={'/login'}></Navigate>
 };
 
 export default TaskCreatorRoute;

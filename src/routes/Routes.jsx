@@ -22,11 +22,13 @@ import WorkerTaskList from "../pages/dashboard/worker/TaskList/WorkerTaskList";
 import TaskDetail from "../pages/dashboard/worker/TaskDetail/TaskDetail";
 import MySubmission from "../pages/dashboard/worker/MySubmission/MySubmission";
 import WithDrawalForm from "../pages/dashboard/worker/WithDrawalForm/WithDrawalForm";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: '/',
@@ -45,10 +47,12 @@ export const router = createBrowserRouter([
     {
       path: 'dashboard',
       element: <Dashboard></Dashboard>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
+        // worker
         {
           path: 'workerHome',
-          element: <WorkersHome></WorkersHome>
+          element: <PrivateRoute><WorkersHome></WorkersHome></PrivateRoute>
         },
         {
           path: 'taskList',
@@ -67,6 +71,7 @@ export const router = createBrowserRouter([
           path: 'withdrawals',
           element: <PrivateRoute><WithDrawalForm></WithDrawalForm></PrivateRoute>
         },
+        // task creator
         {
           path: 'taskCreatorHome',
           element: <TaskCreatorRoute><TaskCreatorHome></TaskCreatorHome></TaskCreatorRoute>
@@ -96,6 +101,7 @@ export const router = createBrowserRouter([
           path: 'paymentHistory',
           element: <TaskCreatorRoute><PaymentHistory></PaymentHistory></TaskCreatorRoute>
         },
+        // admin
         {
           path: 'adminHome',
           element: <AdminRoute><AdminHome></AdminHome></AdminRoute>

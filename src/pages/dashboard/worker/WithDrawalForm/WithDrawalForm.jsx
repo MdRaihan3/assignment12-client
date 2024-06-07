@@ -3,29 +3,47 @@ import useRole from "../../../../useHooks/useRole";
 import Swal from "sweetalert2";
 
 // import useAuth from "../../../../useHooks/useAuth";
-// import useAxiosPublic from "../../../../useHooks/useAxiosPublic";
+import useAxiosSecure from "../../../../useHooks/useAxiosSecure";
 
 const WithDrawalForm = () => {
-    const [ , , userDB] = useRole()
-    console.log('user',userDB);
+    const [, , userDB] = useRole()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    // const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
 
-    const coinToWithdraw = watch('coinToWithdraw')
+    const coinWithdraw = watch('coinToWithdraw')
     let withdraw_amount = 0
-    if (coinToWithdraw > 0) { withdraw_amount = parseFloat(coinToWithdraw / 20) }
+    if (coinWithdraw > 0) { withdraw_amount = parseFloat(coinWithdraw / 20) }
 
     const handleWithDraw = async (data) => {
-        const coinInForm = parseInt(data?.coinToWithdraw)
-        console.log(typeof coinInForm, coinInForm,   typeof userDB?.coin, userDB?.coin)
-        if(userDB?.coin < 1){
-            Swal.fire({text:'Not enough coinsadfas', icon: 'error'})
-            return ;}
-        if(coinInForm > userDB?.coin){
-            Swal.fire({text:'Not enough coinsdafs', icon: 'error'})
-            return ;}
-        const coin = data?.selectRole
-        console.log(data, coin);
+        const coinToWithdraw = parseInt(data?.coinToWithdraw)
+        if (userDB?.coin < 1) {
+            Swal.fire({ text: 'Not enough coin', icon: 'error' })
+            return;
+        }
+        if (coinToWithdraw < 1) {
+            Swal.fire({ text: 'Not enough coin', icon: 'error' })
+            return;
+        }
+        if (coinToWithdraw > userDB?.coin) {
+            Swal.fire({ text: 'Not enough coin', icon: 'error' })
+            return;
+        }
+        const withdrawAmount = parseFloat(coinToWithdraw/20)
+        const paymentSystem = data?.selectPaymentSystem
+        const accountNumber = data?.accountNumber
+        const workerName = userDB?.name;
+        const workerEmail = userDB?.email;
+        const withdrawalRequestTime = new Date()
+
+        const withdrawalInfo = {
+            workerName, workerEmail, coinToWithdraw, withdrawAmount, paymentSystem, withdrawalRequestTime, accountNumber
+        }
+        axiosSecure.post('/withdraw', withdrawalInfo)
+        .then(res => {
+            if(res.data?.insertedId){
+                Swal.fire({ text: 'Requested successfully', icon: 'success' })
+            }
+        })
     }
 
     return (
@@ -42,10 +60,9 @@ const WithDrawalForm = () => {
                                     <span className="label-text">Coin to WithDraw</span>
                                 </label>
                                 <input type="number" placeholder="Coin to WithDraw"
-                                    {...register("coinToWithdraw", { min: { value: 1 }, required: true })}
+                                    {...register("coinToWithdraw", {  required: true })}
                                     className="input input-bordered" />
                                 {errors.password?.type === 'required' && <p className=' text-red-600'>Name is required </p>}
-                                {errors.password?.type === 'min' && <p className=' text-red-600'>Minimum value is 1 coin</p>}
                             </div>
                             <div className="form-control">
                                 <label className="label">

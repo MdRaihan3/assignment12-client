@@ -14,8 +14,9 @@ const useRole = () => {
       return data
     },
   })
+  const role = userDB.role
 
-  return [userDB.role, isLoading, userDB, refetch]
+  return [role, isLoading, userDB, refetch]
 }
 
 export default useRole

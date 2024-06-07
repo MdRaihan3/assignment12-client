@@ -1,16 +1,19 @@
 import { useForm } from "react-hook-form"
 import useAuth from "../../../useHooks/useAuth";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
     const { signIn} = useAuth()
     const { register, handleSubmit } = useForm()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const handleLogin = async (data) => {
         signIn(data?.email, data?.password)
             .then(result => {
+                navigate(location.state?.from?.pathname || '/')
                 console.log(result);
                 Swal.fire({
                     icon: 'success',

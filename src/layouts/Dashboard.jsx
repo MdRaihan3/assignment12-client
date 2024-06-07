@@ -10,7 +10,7 @@ const Dashboard = () => {
         <div>
             <DashboardNavbar></DashboardNavbar>
             <div className=" flex">
-                <div className=" md:w-64 min-h-screen bg-red-400">
+                <div className=" md:min-w-64 min-h-screen bg-red-400">
                     <ul className="menu p-4">
                         {role === 'admin' &&
                             <>

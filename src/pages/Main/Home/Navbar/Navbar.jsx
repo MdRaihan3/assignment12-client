@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../../useHooks/useAuth";
+import useRole from "../../../../useHooks/useRole";
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
+    const [ , ,userDB] = useRole()
+    console.log(userDB);
     const navLinks =
         <>
             {
                 user ?
                     <>
-                        <li><Link to={'/availableCoin'}>Available Coin</Link></li>
-                        <li><Link to={'/user-profile'}>User Profile</Link></li>
+                        <li><button>Available Coin {userDB && userDB?.coin}</button></li>
+                        <li><button>User Profile</button></li>
                         <li><Link to={'/dashboard'}>Dashboard</Link></li>
                         <button onClick={() => logOut()}
                             className="btn btn-outline btn-primary">Logout</button>
