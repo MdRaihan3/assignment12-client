@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       element: <Dashboard></Dashboard>,
       errorElement: <ErrorPage></ErrorPage>,
       children: [
-        // worker sfsad
+        // worker
         {
           path: 'workerHome',
           element: <PrivateRoute><WorkersHome></WorkersHome></PrivateRoute>

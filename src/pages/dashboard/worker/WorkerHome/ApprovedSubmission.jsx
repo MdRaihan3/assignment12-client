@@ -21,7 +21,7 @@ const ApprovedSubmission = () => {
 
     return (
         <div className=" my-10">
-            <h1 className=" mb-3 text-center text-2xl">Approved Submission</h1>
+            <h1 className=" mb-3 text-center text-2xl">Approved asfsSubmission</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
