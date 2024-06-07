@@ -11,7 +11,7 @@ const Navbar = () => {
             {
                 user ?
                     <>
-                        <li><button>Available Coin safsaf{userDB && userDB?.coin}</button></li>
+                        <li><button>Available Coin {userDB && userDB?.coin}</button></li>
                         <li><button>User Profile</button></li>
                         <li><Link to={'/dashboard'}>Dashboard</Link></li>
                         <button onClick={() => logOut()}
