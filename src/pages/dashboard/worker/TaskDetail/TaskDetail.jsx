@@ -56,7 +56,7 @@ const TaskDetail = () => {
 
                 <div className=" md:grid grid-cols-2 space-y-1">
                     <p>Creator Name: {task?.creatorName}</p>
-                    <p>Creator Eamil: {task?.creatorEmail}</p>
+                    <p>Creator Email: {task?.creatorEmail}</p>
                     <p>Task Detail: {task?.taskDetail}</p>
                     <p>Submission Detail: {task?.submissionInfo}</p>
                     <p>Payable Amount(coin): {task?.payableAmount}</p>
