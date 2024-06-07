@@ -40,7 +40,7 @@ const AddNewTasks = () => {
             submissionInfo: data?.submissionInfo,
             taskImage: res?.data?.data?.display_url,
             completionDate: startDate,
-            currentTime: new Date()
+            currentTime: new Date(),
         }
         console.log(taskInfo);
         axiosPublic.post('/tasks', taskInfo)

@@ -15,6 +15,13 @@ import UpdateMyTask from "../pages/dashboard/taskCreator/UpdateMyTask/UpdateMyTa
 import PurchaseCoin from "../pages/dashboard/taskCreator/PurchaseCoin/PurchaseCoin";
 import Payment from "../pages/dashboard/taskCreator/PurchaseCoin/Payment";
 import PaymentHistory from "../pages/dashboard/taskCreator/PaymentHistory/PaymentHistory";
+import ManageTasks from "../pages/dashboard/Admin/MangeTasks/ManageTasks";
+import AdminHome from "../pages/dashboard/Admin/AdminHome/AdminHome";
+import PrivateRoute from "./PrivateRoute";
+import WorkerTaskList from "../pages/dashboard/worker/TaskList/WorkerTaskList";
+import TaskDetail from "../pages/dashboard/worker/TaskDetail/TaskDetail";
+import MySubmission from "../pages/dashboard/worker/MySubmission/MySubmission";
+import WithDrawalForm from "../pages/dashboard/worker/WithDrawalForm/WithDrawalForm";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +49,23 @@ export const router = createBrowserRouter([
         {
           path: 'workerHome',
           element: <WorkersHome></WorkersHome>
+        },
+        {
+          path: 'taskList',
+          element: <PrivateRoute><WorkerTaskList></WorkerTaskList></PrivateRoute>
+        },
+        {
+          path: 'taskDetail/:id',
+          element: <PrivateRoute><TaskDetail></TaskDetail></PrivateRoute>,
+          loader: ({params}) =>fetch(`${import.meta.env.VITE_SERVER_APi}/task/${params?.id}`)
+        },
+        {
+          path: 'mySubmission',
+          element: <PrivateRoute><MySubmission></MySubmission></PrivateRoute>
+        },
+        {
+          path: 'withdrawals',
+          element: <PrivateRoute><WithDrawalForm></WithDrawalForm></PrivateRoute>
         },
         {
           path: 'taskCreatorHome',
@@ -73,8 +97,16 @@ export const router = createBrowserRouter([
           element: <TaskCreatorRoute><PaymentHistory></PaymentHistory></TaskCreatorRoute>
         },
         {
+          path: 'adminHome',
+          element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+        },
+        {
           path: 'manageUsers',
           element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+        },
+        {
+          path: 'manageTask',
+          element: <AdminRoute><ManageTasks></ManageTasks></AdminRoute>
         }
       ]
     }

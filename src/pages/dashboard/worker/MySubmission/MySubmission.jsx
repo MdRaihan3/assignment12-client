@@ -1,27 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../../useHooks/useAuth";
 import useAxiosSecure from "../../../../useHooks/useAxiosSecure";
+import useAuth from "../../../../useHooks/useAuth";
 
-const ApprovedSubmission = () => {
-    const { user, loading } = useAuth()
+const MySubmission = () => {
+    const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
-
-
-    const { data: allSubmissions = [] } = useQuery({
-        queryKey: ['tasks'],
-        enabled: !loading && !!user?.email,
+    const { data: submissions = [] } = useQuery({
+        queryKey: ['users'],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/submission/${user?.email}`)
-            return data
+            const res = await axiosSecure.get(`/submission/${user?.email}`)
+            return res.data
         }
     })
-
-    const submissions = allSubmissions.filter(s => s?.status === 'approve')
     console.log(submissions);
-
     return (
-        <div className=" my-10">
-            <h1 className=" mb-3 text-center text-2xl">Approved Submission</h1>
+        <div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -58,4 +51,4 @@ const ApprovedSubmission = () => {
     );
 };
 
-export default ApprovedSubmission;
+export default MySubmission;

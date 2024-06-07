@@ -36,7 +36,7 @@ const Register = () => {
                             .then(res => {
                                 console.log(res?.data);
                                 if (res.data?.insertedId) {
-                                    Swal.fire('Successfully Registered')
+                                    Swal.fire({text:'Successfully Registered', icon: 'success'})
                                 }
                             })
                     }).catch((err) => {

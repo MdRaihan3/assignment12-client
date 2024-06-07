@@ -28,8 +28,8 @@ const Dashboard = () => {
                                 </li>
                             </>
                         }
-                        {/* {role === 'taskCreator' &&
-                            <> */}
+                        {role === 'taskCreator' &&
+                            <>
 
                         <li>
                             <NavLink to='/dashboard/taskCreatorHome'>
@@ -51,8 +51,8 @@ const Dashboard = () => {
                             <NavLink to='/dashboard/paymentHistory'>
                                 <FaHome></FaHome>Payment History</NavLink>
                         </li>
-                        {/* </>
-                        } */}
+                        </>
+                        }
                         {
                             role === 'worker' &&
                             <>
@@ -67,6 +67,10 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to='/dashboard/mySubmission'>
                                         <FaHome></FaHome>My Submission</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/withdrawals'>
+                                        <FaHome></FaHome>Withdrawals</NavLink>
                                 </li>
                             </>
                         }
