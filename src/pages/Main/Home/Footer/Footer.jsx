@@ -2,7 +2,7 @@ import { FaFacebook, FaGithub } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className=" p-10 bg-neutral text-neutral-content">
+        <div className=" mt-10 p-10 bg-neutral text-neutral-content">
             <footer className="footer">
                 <aside>
                    <img className=" h-16 w-16" src="logo.png" alt="" />
@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                 </nav>
             </footer>
-            <p className=" text-center pt-4">Copyright © 2024 - All right reserved by RWorker</p>
+            <p className=" text-center pt-4">Copyright © 2024 sdfs- All right reserved by RWorker</p>
         </div>
     );
 };

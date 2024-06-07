@@ -16,7 +16,7 @@ const Dashboard = () => {
                             <>
                                 <li>
                                     <NavLink to='/dashboard/adminHome'>
-                                        <FaHome></FaHome>Admin Home</NavLink>
+                                        <FaHome></FaHome>Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/manageUsers'>
@@ -33,7 +33,7 @@ const Dashboard = () => {
 
                         <li>
                             <NavLink to='/dashboard/taskCreatorHome'>
-                                <FaHome></FaHome>Task Creator Home</NavLink>
+                                <FaHome></FaHome>Home</NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashboard/addNewTask'>
